@@ -1,0 +1,38 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void num_leader(vector<int>& array) {
+    int n = array.size();
+    vector<int> leaders;
+
+    int highest_element = array[n - 1];
+    leaders.push_back(highest_element);
+
+    for (int i = n - 2; i >= 0; i--) {
+        if (array[i] >= highest_element) {
+            leaders.push_back(array[i]);
+            highest_element = array[i];
+        }
+    }
+
+    array = leaders;
+}
+
+int main() {
+    int n;
+    cout << "enter size of array: " << endl;
+    cin >> n;
+    vector<int> array(n);
+    cout << "enter the array elements: ";
+    for (int i = 0; i < n; i++) {
+        cin >> array[i];
+    }
+
+    num_leader(array);
+    cout << "Leaders are: ";
+    for (int a : array) {
+        cout << a << " ";
+    }
+    cout << endl;
+}
